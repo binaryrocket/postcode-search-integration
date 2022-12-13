@@ -4,9 +4,11 @@ iOS, Android 네이티브 앱에서 웹뷰로 다음 우편번호 서비스 연�
 
 ## Installation
 
-### CDN 배포본 이용
+### Hosted module 이용
 
-TODO: CDN 배포 후 URL 및 설치 방법 작성
+네이티브 앱의 웹뷰에 아래 URL을 로딩합니다.
+
+https://binaryrocket.github.io/postcode-search-integration/v1.0.0/
 
 ### docker를 이용한 운영 환경 실행
 
