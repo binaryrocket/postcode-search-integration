@@ -22,6 +22,25 @@
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+      /**
+       * Pass selected address data to app
+       */
+      function emit(event, data) {
+        // Android
+        try {
+          window.AndroidInterface[event](data);
+        } catch (e) {
+          console.error(e);
+        }
+
+        // iOS
+        try {
+          window.webkit.messageHandlers[event].postMessage(data);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
       // Wrapper element
       const wrapper = window.document.getElementById("wrapper");
 
@@ -37,9 +56,8 @@
          * @param {object} data 주소 정보
          */
         oncomplete: function (data) {
-          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-          // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-          console.log(data);
+          const json = JSON.stringify(data);
+          emit("onSelect", json);
         },
         /**
          * 화면 크기 변동시 호출되는 콜백
@@ -47,8 +65,9 @@
          * @param {object} size 화면 크기 {width, height}
          */
         onresize: function (size) {
-          console.log(size);
           wrapper.style.height = size.height + "px";
+          const json = JSON.stringify(size);
+          emit("onResize", json);
         },
         /**
          * 애니메이션 적용 설정
