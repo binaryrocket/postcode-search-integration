@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: postcode-service
+    build:
+      context: .
+    image: postcode-service
+    volumes:
+      - type: bind
+        source: ./src
+        target: /usr/share/nginx/html
+    ports:
+      - ${PORT}:80
+    environment:
+      - NGINX_PORT=80
