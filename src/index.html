@@ -28,7 +28,7 @@
       function emit(event, data) {
         // Android
         try {
-          window.AndroidInterface[event](data);
+          window.Android[event](data);
         } catch (e) {
           console.error(e);
         }

@@ -34,4 +34,58 @@ PORT=8080
 
 ## Usage
 
-TODO: 사용법 작성
+### Android
+
+`onSelect`, `onResize` 메서드가 구현된 `JavascriptInterface`를 생성하고, 이를 `Android`라는 명칭으로 웹뷰에 추가합니다.
+
+#### Kotlin
+
+```kotlin
+// 인터페이스 생성
+class WebAppInterface(private val mContext: Context) {
+	@JavascriptInterface
+	fun onSelect(data: String) {
+		// 선택된 주소 데이터 처리
+	}
+
+	@JavascriptInterface
+	fun onResize(data: String) {
+		// 리사이징 처리
+	}
+}
+
+// 웹뷰 인터페이스 추가
+val webView: WebView = findViewById(R.id.webview)
+webView.addJavascriptInterface(WebAppInterface(this), "Android")
+```
+
+#### Java
+
+```java
+// 인터페이스 생성
+public class WebAppInterface {
+  Context mContext;
+
+  WebAppInterface(Context c) {
+    mContext = c;
+  }
+
+  @JavascriptInterface
+  public void onSelect(String data) {
+		// 선택된 주소 데이터 처리
+  }
+
+	@JavascriptInterface
+  public void onResize(String data) {
+		// 리사이징 처리
+  }
+}
+
+// 웹뷰 인터페이스 추가
+WebView webView = (WebView) findViewById(R.id.webview);
+webView.addJavascriptInterface(new WebAppInterface(this), "Android");
+```
+
+참고: https://developer.android.com/develop/ui/views/layout/webapps/webview
+
+### iOS
