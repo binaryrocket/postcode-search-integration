@@ -8,7 +8,7 @@ iOS, Android 네이티브 앱에서 웹뷰로 다음 우편번호 서비스 연�
 
 네이티브 앱의 웹뷰에 아래 URL을 로딩합니다.
 
-https://binaryrocket.github.io/postcode-search-integration/v1.0.0/
+https://binaryrocket.github.io/postcode-search-integration/v1.0.1/
 
 ### docker를 이용한 운영 환경 실행
 
@@ -35,6 +35,23 @@ PORT=8080
 ```
 
 ## Usage
+
+### Flutter
+
+webview 생성시 `onSelect`, `onResize` callback을 등록합니다.
+
+```dart
+onWebViewCreated: (controller) {
+  // Javascript 핸들러 생성
+  controller.addJavaScriptHandler(handlerName: 'onSelect', callback: (data) {
+    // 선택된 주소 데이터 처리
+  });
+
+  controller.addJavaScriptHandler(handlerName: 'onResize', callback: (data) {
+    // 리사이징 처리
+  });
+},
+```
 
 ### Android
 
@@ -86,21 +103,6 @@ public class WebAppInterface {
 // 웹뷰 인터페이스 추가
 WebView webView = (WebView) findViewById(R.id.webview);
 webView.addJavascriptInterface(new WebAppInterface(this), "Android");
-```
-
-#### Flutter
-
-```dart
-onWebViewCreated: (controller) {
-  // Javascript 핸들러 생성
-  controller.addJavaScriptHandler(handlerName: 'onSelect', callback: (data) {
-    // 선택된 주소 데이터 처리
-  });
-
-  controller.addJavaScriptHandler(handlerName: 'onResize', callback: (data) {
-    // 리사이징 처리
-  });
-},
 ```
 
 참고: https://developer.android.com/develop/ui/views/layout/webapps/webview
