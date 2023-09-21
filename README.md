@@ -45,15 +45,15 @@ PORT=8080
 ```kotlin
 // 인터페이스 생성
 class WebAppInterface(private val mContext: Context) {
-	@JavascriptInterface
-	fun onSelect(data: String) {
-		// 선택된 주소 데이터 처리
-	}
+  @JavascriptInterface
+  fun onSelect(data: String) {
+    // 선택된 주소 데이터 처리
+  }
 
-	@JavascriptInterface
-	fun onResize(data: String) {
-		// 리사이징 처리
-	}
+  @JavascriptInterface
+  fun onResize(data: String) {
+    // 리사이징 처리
+ }
 }
 
 // 웹뷰 인터페이스 추가
@@ -77,7 +77,7 @@ public class WebAppInterface {
 		// 선택된 주소 데이터 처리
   }
 
-	@JavascriptInterface
+  @JavascriptInterface
   public void onResize(String data) {
 		// 리사이징 처리
   }
@@ -86,6 +86,21 @@ public class WebAppInterface {
 // 웹뷰 인터페이스 추가
 WebView webView = (WebView) findViewById(R.id.webview);
 webView.addJavascriptInterface(new WebAppInterface(this), "Android");
+```
+
+#### Flutter
+
+```dart
+onWebViewCreated: (controller) {
+  // Javascript 핸들러 생성
+  controller.addJavaScriptHandler(handlerName: 'onSelect', callback: (data) {
+    // 선택된 주소 데이터 처리
+  });
+
+  controller.addJavaScriptHandler(handlerName: 'onResize', callback: (data) {
+    // 리사이징 처리
+  });
+},
 ```
 
 참고: https://developer.android.com/develop/ui/views/layout/webapps/webview
