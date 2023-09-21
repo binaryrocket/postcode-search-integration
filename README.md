@@ -4,11 +4,11 @@ iOS, Android 네이티브 앱에서 웹뷰로 다음 우편번호 서비스 연�
 
 ## Installation
 
-### Hosted module 이용
+<!-- ### Hosted module 이용
 
 네이티브 앱의 웹뷰에 아래 URL을 로딩합니다.
 
-https://binaryrocket.github.io/postcode-search-integration/v1.0.1/
+https://binaryrocket.github.io/postcode-search-integration/v1.0.1/ -->
 
 ### docker를 이용한 운영 환경 실행
 
