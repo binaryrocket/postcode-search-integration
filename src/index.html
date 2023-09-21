@@ -42,7 +42,7 @@
 
         // Flutter
         try {
-          window.flutter_inappwebview.callHandler(event, data);
+          window[event].postMessage(data);
         } catch (e) {
           console.error(e);
         }

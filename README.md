@@ -41,16 +41,21 @@ PORT=8080
 webview 생성시 `onSelect`, `onResize` callback을 등록합니다.
 
 ```dart
-onWebViewCreated: (controller) {
-  // Javascript 핸들러 생성
-  controller.addJavaScriptHandler(handlerName: 'onSelect', callback: (data) {
-    // 선택된 주소 데이터 처리
-  });
+final WebViewController controller = WebViewController();
 
-  controller.addJavaScriptHandler(handlerName: 'onResize', callback: (data) {
+controller.addJavaScriptChannel(
+  'onSelect',
+  onMessageReceived: (JavaScriptMessage message) {
+    // 선택된 주소 데이터 처리
+  },
+);
+
+controller.addJavaScriptChannel(
+  'onResize',
+  onMessageReceived: (JavaScriptMessage message) {
     // 리사이징 처리
-  });
-},
+  },
+);
 ```
 
 ### Android
